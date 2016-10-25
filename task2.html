@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Прямая</title>
+    <style>
+        .with_inputs{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 100%;
+            margin: 0;
+        }
+        .with_inputs > div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            background: #dbe6f3;
+            border-radius: 50px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+        label, a{
+            margin: 10px;
+        }
+        input {
+            width: 50px;
+        }
+        .with_canvas {
+            margin: 10px 0 0 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="with_inputs">
+        <div>
+            <div>
+                <a href="task1.html">ax^3 + bx + c / dx + e</a>
+            </div>
+            <div>
+                <a href="task2.html">Ax + By + C = 0</a>
+            </div>
+            <div>
+                <a href="task3.html">-x^2/a^2 + y^2/b^2 = 1</a>
+            </div>
+            <div>
+                <label for="a">A:</label><input name="a" id="a" type="number" value="10">
+            </div>
+            <div>
+                <label for="b">B:</label><input name="b" id="b" type="number" value="-4">
+            </div>
+            <div>
+                <label for="c">C:</label><input name="c" id="c" type="number" value="-300">
+            </div>
+            <div>
+                <label><button id="submit_btn">Draw</button></label>
+            </div>
+        </div>
+    </div>
+    <div class="with_canvas">
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+<script src="task2.js"></script>
+</html>

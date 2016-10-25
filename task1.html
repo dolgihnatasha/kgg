@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>График</title>
+    <style>
+        .with_inputs{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 100%;
+            margin: 0;
+        }
+        .with_inputs > div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            background: #dbe6f3;
+            border-radius: 50px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+        label, a{
+            margin: 10px;
+        }
+        input {
+            width: 50px;
+        }
+        .with_canvas {
+            margin: 10px 0 0 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="with_inputs">
+        <div>
+            <div>
+                <a href="task1.html">ax^3 + bx + c / dx + e</a>
+            </div>
+            <div>
+                <a href="task2.html">Ax + By + C = 0</a>
+            </div>
+            <div>
+                <a href="task3.html">-x^2/a^2 + y^2/b^2 = 1</a>
+            </div>
+            <div>
+                <label for="a">A:</label><input name="a" id="a" type="number" value="-1">
+            </div>
+            <div>
+                <label for="b">B:</label><input name="b" id="b" type="number" value="-5">
+            </div>
+            <div>
+                <label for="c">C:</label><input name="c" id="c" type="number" value="-3">
+            </div>
+            <div>
+                <label for="d">D:</label><input name="d" id="d" type="number" value="3">
+            </div>
+            <div>
+                <label for="e">E:</label><input name="e" id="e" type="number" value="3">
+            </div>
+            <div>
+                <label for="x1">X1:</label><input name="x1" id="x1" type="number" value="-3">
+            </div>
+            <div>
+                <label for="x2">X2:</label><input name="x2" id="x2" type="number" value="3">
+            </div>
+            <div>
+                <label><button id="submit_btn">Draw</button></label>
+            </div>
+        </div>
+    </div>
+    <div class="with_canvas">
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+<script src="task1.js"></script>
+</html>
