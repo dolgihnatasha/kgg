@@ -22,7 +22,7 @@ btn.addEventListener('click', function () {
         b: Number(b_btn.value)
     };
     clear();
-    draw();
+    hyperbola(params.a,params.b, canvas.width);
 });
 
 function clear() {
@@ -32,40 +32,76 @@ function clear() {
     ctx.fill();
 }
 
-function fx(x) {
-    return (- Math.pow(params.b, 2) * Math.pow(params.a, 2) - x * x * Math.pow(params.b, 2))
-}
-
-function fy(y) {
-    return (- Math.pow(params.b, 2) * Math.pow(params.a, 2) + y * y * Math.pow(params.a, 2))
-}
-
-function draw() {
+function draw(x, y) {
+    ctx.beginPath();
     ctx.fillStyle = 'red';
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    var x1 = fy(0) <= 0 ? 0 : Math.abs(Math.round(fy(0)));
-    var x2 = Math.min(Math.max(fy(canvas.height), 0), canvas.width);
-    var y1 = Math.round(fx(x1));
-    var y2 = Math.round(fx(x2));
+    ctx.fillRect((x + canvas.width / 2),(canvas.height / 2 - y), 1, 1);
 
-    var dx = x2 - x1, dy = y2 - y1;
-    var err = dx - dy;
-    var signx = x1 < x2 ? 1 : -1;
-    var signy = y1 < y2 ? 1 : -1;
+    ctx.fillRect((-x + canvas.width / 2),(canvas.height / 2 - y), 1, 1);
 
-    while (x1 != x2 || y1 != y2) {
-        ctx.rect(x1, y1, 1, 1);
-        if (err * 2 > -dy) {
-            err -= dy;
-            x1 += signx;
+    ctx.fillRect((x + canvas.width / 2),(canvas.height / 2 + y), 1, 1);
+
+    ctx.fillRect((-x + canvas.width / 2),(canvas.height / 2 + y), 1, 1);
+    ctx.closePath();
+}
+
+
+function hyperbola(rx, ry, bound)
+{
+    var x, y, d, mida, midb;
+    var tworx2, twory2, rx2, ry2;
+    var x_slop,y_slop;
+
+    y = ry;
+    x = 0;
+
+    ry2 = ry * ry;
+    rx2 = rx * rx;
+
+    twory2 = 2 * ry2;
+    tworx2 = 2 * rx2;
+
+    y_slop = 2 * tworx2 * ( y + 1 );
+    x_slop = 2 * twory2;
+
+    mida = x_slop / 2;
+    midb = y_slop / 2;
+
+    d = twory2 - rx2 * ( 1 + 2 * ry ) + mida;
+
+    // var i = 0;
+
+    while( ( d < y_slop ) && ( x <= bound )  )
+    {
+        draw(x,y);
+
+        if( d >= 0 ) {
+            d -= y_slop;
+            y++;
+            y_slop += 2 * twory2;
         }
-        if (err < dx) {
-            err += dx;
-            y1 += signy
+        d += twory2 + x_slop;
+        x++;
+        x_slop += 2 * twory2;
+    }
+
+    d -= ( y_slop + x_slop ) / 2 + ( rx2 + ry2 ) - midb - mida;
+
+    if ( ry > rx ) {
+        while( x <= bound ) {
+            draw(x, y);
+            if( d <= 0 ) {
+                d += x_slop;
+                x++;
+                x += 2 * twory2;
+            }
+            d -= tworx2 - y_slop;
+            y++;
+            y_slop += 2 * tworx2;
         }
     }
-    ctx.fill();
 }
 
+
 clear();
-draw();
+hyperbola(params.a,params.b, canvas.width);
